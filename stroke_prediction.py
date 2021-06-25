@@ -7,6 +7,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.pipeline import make_pipeline
 
 df = pd.read_csv('/Users/jiali/Documents/Python_CodingDojo/stroke-prediction/healthcare-dataset-stroke-data.csv')
 print(df.head())
@@ -105,7 +106,7 @@ plt.ylabel('Counts')
 plt.title('Average glucose level distribution for people who got stroke')
 
 
-# Average bmi distribution for people who got stroke, most people are between 20-35.
+# Average bmi distribution for people who got stroke, most people are between 25-33.
 plt.figure(5)
 df.loc[stroke_filter]['bmi'].hist(edgecolor='black', alpha=0.7, label='All gender')
 df.loc[stroke_filter & (df['gender']=='Female')]['bmi'].hist(edgecolor='black', alpha=0.7, label='Female')
@@ -114,6 +115,54 @@ plt.legend()
 plt.xlabel('BMI')
 plt.ylabel('Counts')
 plt.title('BMI distribution for people who got stroke')
+
+# relationship between average clucose level and BMI in people who got stroke
+# No pattern
+plt.figure(6)
+sns.scatterplot(x='avg_glucose_level', y='bmi', data=df.loc[stroke_filter], hue='gender', alpha=0.7)
+plt.xlabel('Average glucose level')
+plt.ylabel('BMI')
+plt.title('BMI distribution for people who got stroke')
+
+df['gender'] = df['gender'].map({'Male':1, 'Female':0})
+df['ever_married'] = df['ever_married'].replace({'Yes':1, 'No':0})
+df['Residence_type'] = df['Residence_type'].map({'Urban':1, 'Rural':0})
+
+
+df_dummies = pd.get_dummies(df, columns = ['work_type', 'smoking_status'], drop_first=True)
+
+# Modeling
+X = df_dummies.drop(columns='stroke')
+y = df_dummies['stroke']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=3, stratify=y)
+
+# Random Forest
+params = {'n_estimators': [50, 100], 'max_depth': [None, 5, 10], 'min_samples_split': [2, 4, 6],'min_samples_leaf': [1, 2, 3]}
+gs = GridSearchCV(RandomForestClassifier(), params) 
+gs.fit(X_train, y_train) 
+print(gs.best_params_)
+print('Training score for Random Forest is:', gs.score(X_train, y_train))
+print('Testing score for Random Forest is:', gs.score(X_test, y_test))
+
+# KNN with pipeline
+estimator_range = list(range(1,20))
+scores = {}
+for estimator in estimator_range:
+    knn = KNeighborsClassifier(n_neighbors=estimator)
+    knn.fit(X_train, y_train)
+    scores[estimator] = knn.score(X_test, y_test)
+print(max(scores, key=scores.get))
+knn_pipe = make_pipeline(StandardScaler(), KNeighborsClassifier(n_neighbors=14))
+knn_pipe.fit(X_train, y_train)
+print('Training accuracy for KNN is:', knn_pipe.score(X_train, y_train))
+print('Testing accuracy for KNN is:', knn_pipe.score(X_test, y_test))
+
+# Logistic Regression with pipeline
+log_pipe = make_pipeline(StandardScaler(), LogisticRegression())
+log_pipe.fit(X_train, y_train)
+print('Training accuracy for Logistic Regression is:', log_pipe.score(X_train, y_train))
+print('Testing accuracy for Logistic Regression is:', log_pipe.score(X_test, y_test))
 
 
 plt.show()
