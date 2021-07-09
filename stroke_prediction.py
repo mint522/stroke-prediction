@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.pipeline import make_pipeline
 
 df = pd.read_csv('/Users/jiali/Documents/Python_CodingDojo/stroke-prediction/healthcare-dataset-stroke-data.csv')
@@ -47,7 +47,7 @@ print(df['stroke'].value_counts())
 
 stroke_filter = df['stroke']==1
 
-# 'Age' distribution for people with stroke
+# 'age' distribution for people with stroke
 # People over 50 are more likely to get stroke, especially female.
 plt.figure(1)
 df.loc[stroke_filter]['age'].hist(edgecolor='black', alpha=0.7, label='All gender')
@@ -58,7 +58,7 @@ plt.xlabel('Age')
 plt.ylabel('Counts')
 plt.title('Age distribution for people with stroke')
 
-# Compare 'Hypertension' by gender for people with stroke
+# Compare 'hypertension' by gender for people with stroke
 # People who don't have hypertension are likely to get stroke, especially for female.
 plt.figure(2)
 # reference(value_counts() as dataframe): https://re-thought.com/pandas-value_counts/
@@ -104,7 +104,7 @@ plt.bar(['Hypertension', 'Heart Disease'], [df_stroke_hyper, df_stroke_heart])
 plt.ylabel('Counts')
 plt.title('Hypertension and Heart Disease in people with stroke')
 
-# Average glucose level distribution for people with stroke, most people are lower than 120
+# Average glucose level distribution for people with stroke, most people are lower than 120.
 plt.figure(5)
 df.loc[stroke_filter]['avg_glucose_level'].hist(edgecolor='black', alpha=0.7, label='All gender')
 df.loc[stroke_filter & (df['gender']=='Female')]['avg_glucose_level'].hist(edgecolor='black', alpha=0.7, label='Female')
@@ -146,7 +146,7 @@ plt.ylabel('BMI')
 plt.xlabel('Gender')
 plt.title('BMI by gender')
 
-# relationship between average clucose level and BMI in people with stroke
+# Relationship between average glucose level and BMI in people with stroke
 # No pattern
 plt.figure(9)
 sns.scatterplot(x='avg_glucose_level', y='bmi', data=df.loc[stroke_filter], hue='gender', alpha=0.7)
@@ -204,6 +204,12 @@ log_pipe = make_pipeline(StandardScaler(), LogisticRegression())
 log_pipe.fit(X_train, y_train)
 print('Training accuracy for Logistic Regression is:', log_pipe.score(X_train, y_train))
 print('Testing accuracy for Logistic Regression is:', log_pipe.score(X_test, y_test))
+
+# Gradient Boosting
+gbc = GradientBoostingClassifier()
+gbc.fit(X_train, y_train)
+print('Training accuracy for Gradient Boosting is:', gbc.score(X_train, y_train))
+print('Testing accuracy for Gradient Boosting is:', gbc.score(X_test, y_test))
 
 plt.show()
 
