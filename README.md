@@ -63,7 +63,7 @@ More never smoked people have stroke. But if combine 'formerly smoked' and 'smok
 
 ![stroke-Figure_10](https://user-images.githubusercontent.com/82603737/125130585-1a9b7f00-e0b6-11eb-94f6-73966e8388e1.png)
 ### Correlation between features and target
-'age', 'hypertension', 'heart_disease', 'avg_glucose_leve' are more related with 'stroke'.
+'age', 'hypertension', 'heart_disease', 'avg_glucose_level' are more related with 'stroke'.
 ![stroke-Figure_11](https://user-images.githubusercontent.com/82603737/125130816-81209d00-e0b6-11eb-8135-fbbb809e5524.png)
 
 ## Modeling
