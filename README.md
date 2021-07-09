@@ -60,15 +60,33 @@ No pattern
 ![stroke-Figure_9](https://user-images.githubusercontent.com/82603737/125131255-4a975200-e0b7-11eb-97a5-f0a08fe113be.png)
 ### Smoke
 More never smoked people have stroke. But if combine 'formerly smoked' and 'smokes', the total is higher than 'never smoked'.
+
 ![stroke-Figure_10](https://user-images.githubusercontent.com/82603737/125130585-1a9b7f00-e0b6-11eb-94f6-73966e8388e1.png)
 ### Correlation between features and target
 'age', 'hypertension', 'heart_disease', 'avg_glucose_leve' are more related with 'stroke'.
 ![stroke-Figure_11](https://user-images.githubusercontent.com/82603737/125130816-81209d00-e0b6-11eb-8135-fbbb809e5524.png)
 
 ## Modeling
-
-
+Use train test split on Random Forest, KNN wiht Pipeline, Logistic Regression with Pipeline.
+### Random Forest
+- GridSearchCV() to determine best parameters
+- 'max_depth': None, 'min_samples_leaf: 1, 'min_samples_split': 4, 'n_estimators': 100
+- training score: 0.98
+- testing score: 0.96
+### KNN with Pipeline
+- 'n_neighbors': 14
+- Pipeline to keep code simple
+- training score: 0.96
+- testing score: 0.96
+### Logistic Regression with Pipeline
+- Pipeline to keep code simple
+- training score: 0.96
+- testing score: 0.96
+### Gradient Boosting
+- training score: 0.97
+- testing score: 0.95
 ## Conclusions
+The final model I choose is Random Forest because it has the best score for both training and testing data.
 
 ## Data Source
 [kaggle.com - Stroke Prediction Dataset](https://www.kaggle.com/fedesoriano/stroke-prediction-dataset)
