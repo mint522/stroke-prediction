@@ -60,6 +60,7 @@ No pattern
 ![stroke-Figure_9](https://user-images.githubusercontent.com/82603737/125131255-4a975200-e0b7-11eb-97a5-f0a08fe113be.png)
 ### Smoke
 More never smoked people have stroke. But if combine 'formerly smoked' and 'smokes', the total is higher than 'never smoked'.
+
 ![stroke-Figure_10](https://user-images.githubusercontent.com/82603737/125130585-1a9b7f00-e0b6-11eb-94f6-73966e8388e1.png)
 ### Correlation between features and target
 'age', 'hypertension', 'heart_disease', 'avg_glucose_leve' are more related with 'stroke'.
