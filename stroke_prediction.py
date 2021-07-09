@@ -166,7 +166,7 @@ df['gender'] = df['gender'].map({'Male':1, 'Female':0})
 df['ever_married'] = df['ever_married'].replace({'Yes':1, 'No':0})
 df['Residence_type'] = df['Residence_type'].map({'Urban':1, 'Rural':0})
 
-# 'age', 'hypertension', 'heart_disease', 'avg_glucose_leve' are more related with 'stroke'
+# 'age', 'hypertension', 'heart_disease', 'avg_glucose_level' are more related with 'stroke'
 plt.figure(11)
 sns.heatmap(df.corr(), annot=True, square=True, cmap='YlGnBu')
 
