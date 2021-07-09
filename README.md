@@ -67,7 +67,7 @@ More never smoked people have stroke. But if combine 'formerly smoked' and 'smok
 ![stroke-Figure_11](https://user-images.githubusercontent.com/82603737/125130816-81209d00-e0b6-11eb-8135-fbbb809e5524.png)
 
 ## Modeling
-Use train test split on Random Forest, KNN wiht Pipeline, Logistic Regression with Pipeline.
+Use train test split on Random Forest, KNN wiht Pipeline, Logistic Regression with Pipeline, and Gradient Boosting.
 ### Random Forest
 - GridSearchCV() to determine best parameters
 - 'max_depth': None, 'min_samples_leaf: 1, 'min_samples_split': 4, 'n_estimators': 100
