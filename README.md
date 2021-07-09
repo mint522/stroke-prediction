@@ -70,11 +70,11 @@ More never smoked people have stroke. But if combine 'formerly smoked' and 'smok
 Use train test split on Random Forest, KNN wiht Pipeline, Logistic Regression with Pipeline.
 ### Random Forest
 - GridSearchCV() to determine best parameters
-- 'max_depth':None, 'min_samples_leaf:1, 'min_samples_split': 4, 'n_estimators': 100
+- 'max_depth': None, 'min_samples_leaf: 1, 'min_samples_split': 4, 'n_estimators': 100
 - training score: 0.98
 - testing score: 0.96
 ### KNN with Pipeline
-- 'n_neighbors':14
+- 'n_neighbors': 14
 - Pipeline to keep code simple
 - training score: 0.96
 - testing score: 0.96
