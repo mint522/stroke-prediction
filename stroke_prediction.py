@@ -14,7 +14,7 @@ print(df.info())
 
 df.drop(columns='id', inplace=True)
 
-# There's no pattern in data where 'bmi' is N/A, so I decided to dropna.
+# There's no pattern in data where 'bmi' is N/A, and it's only 4%, so I decided to dropna.
 print(df.isna().sum())
 print(df[df['bmi'].isna()]['gender'].value_counts())
 print(df[df['bmi'].isna()]['age'].value_counts())
