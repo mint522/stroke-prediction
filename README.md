@@ -86,7 +86,8 @@ Use train test split on Random Forest, KNN wiht Pipeline, Logistic Regression wi
 - training score: 0.97
 - testing score: 0.95
 ## Conclusions
-The final model I choose is Random Forest because it has the best score for both training and testing data.
+- The final model I choose is Random Forest because it has the best score for both training and testing data.
+- Age, hypertension, heart disease and average glucose level are more related with stroke.
 
 ## Data Source
 [kaggle.com - Stroke Prediction Dataset](https://www.kaggle.com/fedesoriano/stroke-prediction-dataset)
